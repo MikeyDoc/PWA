@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Index</title>
+     <link rel="stylesheet" href="/styles.css" >
+     <script src="/main.js"></script>
+</head>
+<body>
+
+    <nav>
+        <ul>
+            <li><a href="Index.html">Home</a></li>
+            <li><a href="page1.html">Page 1</a></li>
+            <li><a href="page2.html">Page 2</a></li>
+        </ul>
+    </nav>   
+    <img src="/img/redstar-512.png" alt="">
+    <hi>Page 2</hi>
+   <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. 
+       Deserunt optio aliquid odit inventore, dolor dicta. 
+       Porro architecto dolore recusandae, beatae, temporibus fuga, 
+       minus voluptates nesciunt explicabo autem praesentium tenetur ad!</p>
+ 
+  <button class="cache-article">Read Later</button>
+
+  <script>
+        const cacheName = 'page2-cache-v1';
+        const URLs = [
+            'page2.html',
+            'img/redstar-512.png'
+        ];
+        document.querySelector('.cashe-article').addEventListener
+        ('click', (event)=>{
+            event.preventDefault();
+            caches.open(cache)
+                .then((cache)=>{
+                    cache.addAll(URLs);
+                })
+        }
+        )
+  </script>
+</body>
+</html>

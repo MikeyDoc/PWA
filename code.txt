@@ -1,0 +1,24 @@
+fetch(url)
+// .then( res => console.log(res) )
+.then( res => {​​​​​​​return res.json()}​​​​​​​ )
+.then( (data) => {​​​​​​​
+console.log(data);
+let authors = data.results;
+return authors.map((author)=>{​​​​​​​
+let card = createNode('div');
+card.setAttribute('class', 'col-lg-3 col-md-6');
+card.innerHTML = `
+<div class="card">
+<img class="card-img-top" src="${​​​​​​​author.picture.large}​​​​​​​" >
+<div class="card-body">
+<h4 class="card-title">${​​​​​​​author.name.first}​​​​​​​ ${​​​​​​​author.name.last}​​​​​​​ </h4>
+<p class="card-text">${​​​​​​​author.location.city}​​​​​​​</p>
+</div>
+<div class="card-footer">
+<a href="#" class="btn btn-primary">Find out more</a>
+</div>
+</div>
+`;
+append(cards, card);
+}​​​​​​​);
+}​​​​​​​ );//EO fetch

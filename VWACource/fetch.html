@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authors</title>
+
+    <style>
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        #authors{
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #authors li{
+            display: flex;
+            flex-direction: column;
+            width: 100px;
+            margin: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            justify-content: center;
+            border-radius:  5px;
+
+        }
+
+
+    </style>
+</head>
+<body>
+   <h1>Authors</h1> 
+   <ul id="authors"></ul>
+
+   <script>
+
+       function createNode(element){
+           return document.createElement(element);
+       }
+
+       function append(parent, el){
+            return parent.appendChild(el);
+       }
+
+       const ul =document.getElementById('authors')
+       const url = 'https://randomuser.me/api/?results=10'
+       fetch(url)
+             //   .then(res => console.log(res));
+             .then( res => {return res.json()})
+             .then((data) => {
+                 console.log(data);
+                 let authors = data.results; 
+                 return authors.map((author)=>{
+                     let li = createNode('li'), img = createNode('img'),span=createNode('span'); 
+                     img.src= author.picture.medium;
+                     span.innerHTML = `Name: ${author.name.first} ${author.name.last}`; 
+                     append(li, img); 
+                     append(li, span); 
+                     append(ul, li); 
+                 } )
+             } ) //EO Fetch
+
+             const Url2 = 'https://reqres.in/api/users';
+             fetch(url2,{
+                 method:'POST',
+                 headers: {'Content-Type': 'application/json'
+                 },
+                 body: JSON.stringify({
+                     first_name: 'jim',
+                     last_name: 'bond'
+                 }).then(res => {return res.json()})
+                   .then(data => console.log(data))
+                }
+                );
+
+
+   </script>
+
+</body>
+</html>
